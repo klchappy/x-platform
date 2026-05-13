@@ -9,6 +9,16 @@
 - GitHub repo `klchappy/x-platform` (oluşturulacak)
 - Supabase projesi (opsiyonel — auth için)
 
+## ⚠ Önemli Notlar
+
+- **x-api Network Aliases**: Coolify x-api Configuration → Network'te `Network Aliases` alanına `x-api` yazılmalı. Bu olmadan x-web nginx'i `x-api:4250` DNS'ini çözemez ve `/v1/*` proxy çalışmaz.
+- **Force Deploy**: Network Aliases değişikliğinden sonra "Restart" değil **"Force deploy (without cache)"** veya **Redeploy** ile container yeniden yaratılmalı. Restart sadece mevcut konteyneri yeniden başlatır.
+- **Programatik deploy**: Coolify API token + deploy webhook:
+  ```bash
+  curl -X GET "https://coolify.deploi.net/api/v1/deploy?uuid=<APP_UUID>&force=true" \
+    -H "Authorization: Bearer <ROOT_TOKEN>"
+  ```
+
 ## Coolify'da iki resource
 
 Damga örneğindeki gibi iki ayrı uygulama:
