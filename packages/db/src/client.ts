@@ -14,11 +14,22 @@ export function getPool(): pg.Pool {
     if (!url) {
       throw new Error('DATABASE_URL is required');
     }
+    // SSL: only enable for external/managed DBs (hostnames with dots like supabase.co).
+    // Coolify internal hostnames (UUIDs, no dots) and localhost use plain TCP.
+    const host = (() => {
+      try {
+        return new URL(url).hostname;
+      } catch {
+        return '';
+      }
+    })();
+    const useSsl =
+      host.includes('.') && !host.endsWith('.local') && host !== 'localhost' && host !== '127.0.0.1';
     _pool = new Pool({
       connectionString: url,
       max: 10,
       idleTimeoutMillis: 30_000,
-      ssl: url.includes('localhost') || url.includes('127.0.0.1') ? false : { rejectUnauthorized: false },
+      ssl: useSsl ? { rejectUnauthorized: false } : false,
     });
   }
   return _pool;
