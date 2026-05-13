@@ -1,5 +1,5 @@
 import { pgTable, text, integer, jsonb, timestamp, boolean, uuid, index } from 'drizzle-orm/pg-core';
-import { orgs } from './orgs.js';
+import { orgs } from './orgs';
 
 export const plans = pgTable('plans', {
   id: text('id').primaryKey(),

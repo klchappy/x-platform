@@ -1,5 +1,5 @@
 import { pgTable, uuid, text, timestamp, boolean, jsonb, index, uniqueIndex } from 'drizzle-orm/pg-core';
-import { orgs } from './orgs.js';
+import { orgs } from './orgs';
 
 export const users = pgTable(
   'users',

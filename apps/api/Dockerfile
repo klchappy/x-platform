@@ -49,4 +49,5 @@ EXPOSE 4250
 HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
   CMD curl -fsS http://localhost:4250/health >/dev/null || exit 1
 
-CMD ["pnpm", "--filter", "@x/api", "exec", "tsx", "src/index.ts"]
+# Entrypoint: migrate + seed (idempotent) + start API
+CMD ["sh", "-c", "pnpm --filter @x/db exec tsx src/migrate.ts && pnpm --filter @x/db exec tsx src/seed.ts && pnpm --filter @x/api exec tsx src/index.ts"]
