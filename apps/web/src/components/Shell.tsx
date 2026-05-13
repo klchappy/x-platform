@@ -35,7 +35,9 @@ export function Shell(): React.ReactElement {
         </div>
 
         <div className="x-side__section">
-          <div className="x-side__label">Sistem</div>
+          <div className="x-side__label">Yönetim</div>
+          <NavItem to="/app/team" icon="👥">Ekip</NavItem>
+          <NavItem to="/app/billing" icon="💳">Plan & Fatura</NavItem>
           <NavItem to="/app/settings" icon="⚙️">Ayarlar</NavItem>
         </div>
       </aside>

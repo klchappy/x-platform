@@ -6,6 +6,8 @@ import { DashboardPage } from './pages/Dashboard.js';
 import { ModulesPage } from './pages/Modules.js';
 import { SettingsPage } from './pages/Settings.js';
 import { SignInPage } from './pages/SignIn.js';
+import { BillingPage } from './pages/Billing.js';
+import { TeamPage } from './pages/Team.js';
 import DamgaModulePage from '@x/mod-damga/web';
 import LokmaModulePage from '@x/mod-lokma/web';
 import SantralModulePage from '@x/mod-santral/web';
@@ -21,6 +23,8 @@ export function App(): React.ReactElement {
         <Route path="dashboard" element={<DashboardPage />} />
         <Route path="modules" element={<ModulesPage />} />
         <Route path="settings" element={<SettingsPage />} />
+        <Route path="billing" element={<BillingPage />} />
+        <Route path="team" element={<TeamPage />} />
         <Route path="m/damga" element={<DamgaModulePage />} />
         <Route path="m/lokma" element={<LokmaModulePage />} />
         <Route path="m/santral" element={<SantralModulePage />} />

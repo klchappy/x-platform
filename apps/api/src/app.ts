@@ -11,6 +11,9 @@ import meRoutes from './routes/me.js';
 import orgsRoutes from './routes/orgs.js';
 import modulesRoutes from './routes/modules.js';
 import platformRoutes from './routes/platform.js';
+import aiRoutes from './routes/ai.js';
+import billingRoutes from './routes/billing.js';
+import invitationsRoutes from './routes/invitations.js';
 import { mountModules } from './modules-loader.js';
 
 export async function createApp(): Promise<Express> {
@@ -52,6 +55,9 @@ export async function createApp(): Promise<Express> {
   app.use('/v1/orgs', orgsRoutes);
   app.use('/v1/modules', modulesRoutes);
   app.use('/v1/platform', platformRoutes);
+  app.use('/v1/ai', aiRoutes);
+  app.use('/v1/billing', billingRoutes);
+  app.use('/v1/invitations', invitationsRoutes);
 
   // Mount per-module routers under /v1/modules/<id>/*
   await mountModules(app);

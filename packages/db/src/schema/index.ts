@@ -5,3 +5,5 @@ export * from './audit.js';
 export * from './integrations.js';
 export * from './notifications.js';
 export * from './api-keys.js';
+export * from './plans.js';
+export * from './invitations.js';

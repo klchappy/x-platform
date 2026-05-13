@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { MODULES, MODULE_IDS, SECTOR_BUNDLES } from '@x/shared';
+import { MODULES, MODULE_IDS, SECTOR_BUNDLES, PLANS, formatTry } from '@x/shared';
 
 export function LandingPage(): React.ReactElement {
   return (
@@ -62,6 +62,65 @@ export function LandingPage(): React.ReactElement {
                   <span key={mid} className="x-badge">{MODULES[mid].icon} {MODULES[mid].name}</span>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="pricing" style={{ marginBottom: 80 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 8, textAlign: 'center' }}>Planlar & Fiyatlar</h2>
+        <p style={{ color: 'var(--x-muted)', textAlign: 'center', marginBottom: 24 }}>
+          14 gün ücretsiz deneme · İstediğin zaman iptal · Aylık abonelik
+        </p>
+        <div className="x-cards" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', alignItems: 'stretch' }}>
+          {PLANS.map((p) => (
+            <div
+              key={p.id}
+              className="x-card"
+              style={{
+                cursor: 'default',
+                borderColor: p.highlight ? '#f97316' : undefined,
+                borderWidth: p.highlight ? 2 : 1,
+                position: 'relative',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+            >
+              {p.highlight && (
+                <span
+                  className="x-badge"
+                  style={{
+                    position: 'absolute',
+                    top: -10,
+                    right: 12,
+                    background: '#f97316',
+                    color: '#fff',
+                    fontWeight: 700,
+                  }}
+                >
+                  En çok tercih edilen
+                </span>
+              )}
+              <h3 style={{ marginBottom: 4 }}>{p.name}</h3>
+              <p style={{ fontSize: 12, color: 'var(--x-muted)', margin: 0, marginBottom: 16 }}>{p.tagline}</p>
+              <div style={{ fontSize: 32, fontWeight: 800, marginBottom: 4 }}>
+                {p.priceMonthlyTry === 0 ? 'Ücretsiz' : formatTry(p.priceMonthlyTry)}
+              </div>
+              {p.priceMonthlyTry > 0 && (
+                <div style={{ fontSize: 12, color: 'var(--x-muted)', marginBottom: 16 }}>aylık · KDV hariç</div>
+              )}
+              <ul style={{ fontSize: 13, color: '#cbd5e1', listStyle: 'none', padding: 0, margin: '12px 0', lineHeight: 1.7, flex: 1 }}>
+                {p.features.map((f, i) => (
+                  <li key={i}>✓ {f}</li>
+                ))}
+              </ul>
+              <Link
+                to={`/sign-in?plan=${p.id}`}
+                className={p.highlight ? 'x-btn' : 'x-btn x-btn--ghost'}
+                style={{ width: '100%', textAlign: 'center', marginTop: 'auto' }}
+              >
+                {p.priceMonthlyTry === 0 ? 'Hemen Başla' : `${p.trialDays} Gün Ücretsiz Dene`}
+              </Link>
             </div>
           ))}
         </div>
