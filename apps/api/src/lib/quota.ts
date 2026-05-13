@@ -11,12 +11,15 @@ export function todayKey(d = new Date()): string {
   return d.toISOString().slice(0, 10);
 }
 
+const ACTIVE_SUB_STATUSES = ['active', 'trialing'];
+
 export async function getActivePlan(orgId: string): Promise<PlanDef> {
   const db = getDb();
   try {
     const sub = await db.query.subscriptions.findFirst({
-      where: (s, { and: a, eq: e }) =>
-        a(e(s.orgId, orgId), e(s.status, 'active')),
+      where: (s, { and: a, eq: e, inArray: ia }) =>
+        a(e(s.orgId, orgId), ia(s.status, ACTIVE_SUB_STATUSES)),
+      orderBy: (s, { desc: d }) => [d(s.createdAt)],
     });
     if (sub) {
       const p = PLAN_BY_ID[sub.planId];
