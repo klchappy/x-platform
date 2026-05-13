@@ -73,16 +73,16 @@ api.x.deploi.net  A → <hetzner-ip>     (proxied: ON)
 
 (Damga için yapılmış olan kayıtlara bak — aynı IP'yi kullan.)
 
-## İlk migrasyon
+## İlk migrasyon — ARTIK OTOMATİK
 
-Supabase yapılandırıldıktan sonra lokalden bir kez:
+Dockerfile CMD'si her start'ta `tsx packages/db/src/migrate.ts && tsx packages/db/src/seed.ts && tsx apps/api/src/index.ts` çalıştırır. Migration + idempotent seed (varsa skip) + API başlatma tek atomic adım. Yeni tablolara ihtiyaç varsa:
+
 ```bash
-cp .env.example .env  # gerçek değerleri doldur
-pnpm install
-pnpm db:generate
-pnpm db:migrate
-pnpm db:seed         # demo tenant + 4 modülü açar
+pnpm db:generate     # yeni migrations/*.sql üretir
+git push             # Coolify webhook redeploy → otomatik migrate + seed
 ```
+
+DATABASE_URL: Coolify Postgres internal hostname (UUID:5432) — SSL kapalı (heuristic: dotted hostname'ler için SSL aç).
 
 ## Mimari özet
 
