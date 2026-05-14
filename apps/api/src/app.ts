@@ -14,6 +14,7 @@ import platformRoutes from './routes/platform.js';
 import aiRoutes from './routes/ai.js';
 import billingRoutes from './routes/billing.js';
 import invitationsRoutes from './routes/invitations.js';
+import iyzicoRoutes from './routes/iyzico.js';
 import { mountModules } from './modules-loader.js';
 
 export async function createApp(): Promise<Express> {
@@ -58,6 +59,7 @@ export async function createApp(): Promise<Express> {
   app.use('/v1/ai', aiRoutes);
   app.use('/v1/billing', billingRoutes);
   app.use('/v1/invitations', invitationsRoutes);
+  app.use('/v1/iyzico', iyzicoRoutes);
 
   // Mount per-module routers under /v1/modules/<id>/*
   await mountModules(app);

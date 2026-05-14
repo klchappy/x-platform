@@ -6,6 +6,7 @@ import { DashboardPage } from './pages/Dashboard.js';
 import { ModulesPage } from './pages/Modules.js';
 import { SettingsPage } from './pages/Settings.js';
 import { SignInPage } from './pages/SignIn.js';
+import { SignUpPage } from './pages/SignUp.js';
 import { BillingPage } from './pages/Billing.js';
 import { TeamPage } from './pages/Team.js';
 import DamgaModulePage from '@x/mod-damga/web';
@@ -18,6 +19,7 @@ export function App(): React.ReactElement {
     <Routes>
       <Route path="/" element={<LandingPage />} />
       <Route path="/sign-in" element={<SignInPage />} />
+      <Route path="/sign-up" element={<SignUpPage />} />
       <Route path="/app" element={<Shell />}>
         <Route index element={<Navigate to="dashboard" replace />} />
         <Route path="dashboard" element={<DashboardPage />} />

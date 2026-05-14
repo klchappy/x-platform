@@ -1,23 +1,10 @@
 import type { Request, Response, NextFunction, RequestHandler } from 'express';
-import { createClient } from '@supabase/supabase-js';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@x/db/client';
 import { users, type User } from '@x/db/schema';
 import { httpError, type OrgRole, hasRole } from '@x/shared';
 import { logger } from '../lib/logger.js';
-
-let _sb: ReturnType<typeof createClient> | null = null;
-function sb() {
-  if (!_sb) {
-    const url = process.env.SUPABASE_URL;
-    const key = process.env.SUPABASE_SERVICE_ROLE_KEY ?? process.env.SUPABASE_ANON_KEY;
-    if (!url || !key) {
-      throw new Error('SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_ANON_KEY) required');
-    }
-    _sb = createClient(url, key);
-  }
-  return _sb;
-}
+import { verifyJwt } from '../lib/jwt.js';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
@@ -38,7 +25,7 @@ export const requireAuth: RequestHandler = async (req, _res, next) => {
     const token = bearer ?? cookieToken;
 
     if (!token) {
-      // Allow demo mode for the initial deploy — read X-Demo-User
+      // Allow demo mode (set ALLOW_DEMO_AUTH=1) — read X-Demo-User for testing
       const demoEmail = req.headers['x-demo-user'];
       if (typeof demoEmail === 'string' && process.env.ALLOW_DEMO_AUTH === '1') {
         const dbUser = await getDb().query.users.findFirst({ where: eq(users.email, demoEmail) });
@@ -49,25 +36,18 @@ export const requireAuth: RequestHandler = async (req, _res, next) => {
           return next();
         }
       }
-      throw httpError(401, 'Auth required', 'no_token');
+      throw httpError(401, 'Giriş yapmanız gerekiyor', 'no_token');
     }
 
-    let supabaseUserId: string | undefined;
-    let email: string | undefined;
-    try {
-      const { data, error } = await sb().auth.getUser(token);
-      if (error || !data?.user) throw new Error(error?.message ?? 'invalid_token');
-      supabaseUserId = data.user.id;
-      email = data.user.email ?? undefined;
-    } catch (err) {
-      logger.warn({ err }, 'supabase getUser failed');
-      throw httpError(401, 'Invalid token', 'invalid_token');
+    const claims = verifyJwt(token);
+    if (!claims) {
+      logger.warn({ tokenPrefix: token.slice(0, 8) }, 'jwt verify failed');
+      throw httpError(401, 'Geçersiz veya süresi dolmuş oturum', 'invalid_token');
     }
 
-    if (!email) throw httpError(401, 'No email on token', 'no_email');
-
-    const dbUser = await getDb().query.users.findFirst({ where: eq(users.email, email) });
-    if (!dbUser) throw httpError(403, 'User not provisioned', 'no_local_user');
+    const dbUser = await getDb().query.users.findFirst({ where: eq(users.id, claims.sub) });
+    if (!dbUser) throw httpError(403, 'Kullanıcı bulunamadı', 'no_local_user');
+    if (!dbUser.isActive) throw httpError(403, 'Hesap pasif', 'inactive');
 
     req.authUser = dbUser;
     req.authOrgId = dbUser.orgId;

@@ -178,15 +178,24 @@ importers:
 
   modules/damga:
     dependencies:
+      '@x/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@x/module-api':
         specifier: workspace:*
         version: link:../../packages/module-api
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
       express:
         specifier: ^4.21.2
         version: 4.22.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
     devDependencies:
       '@types/express':
         specifier: ^5.0.0
@@ -206,15 +215,24 @@ importers:
       '@x/ai':
         specifier: workspace:*
         version: link:../../packages/ai
+      '@x/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@x/module-api':
         specifier: workspace:*
         version: link:../../packages/module-api
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
       express:
         specifier: ^4.21.2
         version: 4.22.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
     devDependencies:
       '@types/express':
         specifier: ^5.0.0
@@ -234,15 +252,24 @@ importers:
       '@x/ai':
         specifier: workspace:*
         version: link:../../packages/ai
+      '@x/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@x/module-api':
         specifier: workspace:*
         version: link:../../packages/module-api
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
       express:
         specifier: ^4.21.2
         version: 4.22.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
     devDependencies:
       '@types/express':
         specifier: ^5.0.0
@@ -259,15 +286,24 @@ importers:
 
   modules/ticaret:
     dependencies:
+      '@x/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@x/module-api':
         specifier: workspace:*
         version: link:../../packages/module-api
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
       express:
         specifier: ^4.21.2
         version: 4.22.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
     devDependencies:
       '@types/express':
         specifier: ^5.0.0

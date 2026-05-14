@@ -115,7 +115,7 @@ export function LandingPage(): React.ReactElement {
                 ))}
               </ul>
               <Link
-                to={`/sign-in?plan=${p.id}`}
+                to={`/sign-up?plan=${p.id}`}
                 className={p.highlight ? 'x-btn' : 'x-btn x-btn--ghost'}
                 style={{ width: '100%', textAlign: 'center', marginTop: 'auto' }}
               >

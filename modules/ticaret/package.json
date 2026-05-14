@@ -13,9 +13,12 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@x/db": "workspace:*",
     "@x/module-api": "workspace:*",
     "@x/shared": "workspace:*",
-    "express": "^4.21.2"
+    "drizzle-orm": "^0.45.2",
+    "express": "^4.21.2",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@types/express": "^5.0.0",

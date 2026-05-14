@@ -8,6 +8,7 @@ export const users = pgTable(
     orgId: uuid('org_id').references(() => orgs.id, { onDelete: 'cascade' }),
     authUserId: text('auth_user_id'),
     email: text('email').notNull(),
+    passwordHash: text('password_hash'),
     fullName: text('full_name'),
     phone: text('phone'),
     role: text('role').notNull().default('employee'),

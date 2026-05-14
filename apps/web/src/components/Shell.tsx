@@ -1,8 +1,14 @@
 import * as React from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { MODULES, MODULE_IDS } from '@x/shared';
 
 export function Shell(): React.ReactElement {
+  const navigate = useNavigate();
+  function logout() {
+    localStorage.removeItem('x_token');
+    localStorage.removeItem('x_demo_user');
+    navigate('/sign-in');
+  }
   return (
     <div className="x-shell">
       <aside className="x-side">
@@ -39,6 +45,15 @@ export function Shell(): React.ReactElement {
           <NavItem to="/app/team" icon="👥">Ekip</NavItem>
           <NavItem to="/app/billing" icon="💳">Plan & Fatura</NavItem>
           <NavItem to="/app/settings" icon="⚙️">Ayarlar</NavItem>
+          <button
+            type="button"
+            className="x-nav__item"
+            onClick={logout}
+            style={{ background: 'transparent', border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left', font: 'inherit' }}
+          >
+            <span className="x-nav__icon">🚪</span>
+            <span>Çıkış</span>
+          </button>
         </div>
       </aside>
       <main className="x-main">
