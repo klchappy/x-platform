@@ -57,7 +57,18 @@ export function SaymanModulePage(): React.ReactElement {
         fetch('/v1/modules/sayman/stats', { headers: headers() }).then((r) => r.json()),
       ]);
       setPayables(Array.isArray(pList) ? pList : []);
-      setStats(sObj && typeof sObj === 'object' ? sObj : null);
+      if (sObj && typeof sObj === 'object' && typeof sObj.totalAmountCentsTry === 'number') {
+        setStats(sObj as Stats);
+      } else {
+        setStats({
+          totalPayablesCount: 0,
+          totalAmountCentsTry: 0,
+          paidCentsTry: 0,
+          openCentsTry: 0,
+          overdueCount: 0,
+          pendingCount: 0,
+        });
+      }
     } catch (e) {
       setError(e instanceof Error ? e.message : 'unknown');
     }
