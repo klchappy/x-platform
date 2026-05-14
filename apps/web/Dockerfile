@@ -9,6 +9,8 @@ RUN corepack enable && corepack prepare pnpm@10.33.2 --activate
 WORKDIR /app
 COPY package.json pnpm-workspace.yaml tsconfig.base.json .npmrc ./
 COPY packages/shared/package.json ./packages/shared/
+COPY packages/db/package.json ./packages/db/
+COPY packages/verification/package.json ./packages/verification/
 COPY packages/ai/package.json ./packages/ai/
 COPY packages/module-api/package.json ./packages/module-api/
 COPY modules/damga/package.json ./modules/damga/
@@ -26,6 +28,8 @@ ENV VITE_API_URL=$VITE_API_URL \
     VITE_SUPABASE_URL=$VITE_SUPABASE_URL \
     VITE_SUPABASE_ANON_KEY=$VITE_SUPABASE_ANON_KEY
 COPY packages/shared ./packages/shared
+COPY packages/db ./packages/db
+COPY packages/verification ./packages/verification
 COPY packages/ai ./packages/ai
 COPY packages/module-api ./packages/module-api
 COPY modules ./modules
