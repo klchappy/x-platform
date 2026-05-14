@@ -22,6 +22,7 @@ COPY modules/damga/package.json ./modules/damga/
 COPY modules/lokma/package.json ./modules/lokma/
 COPY modules/santral/package.json ./modules/santral/
 COPY modules/ticaret/package.json ./modules/ticaret/
+COPY modules/sayman/package.json ./modules/sayman/
 COPY apps/api/package.json ./apps/api/
 RUN pnpm install --filter @x/api... --filter "@x/mod-*"
 
@@ -38,6 +39,7 @@ COPY --from=deps /app/modules/damga/node_modules ./modules/damga/node_modules
 COPY --from=deps /app/modules/lokma/node_modules ./modules/lokma/node_modules
 COPY --from=deps /app/modules/santral/node_modules ./modules/santral/node_modules
 COPY --from=deps /app/modules/ticaret/node_modules ./modules/ticaret/node_modules
+COPY --from=deps /app/modules/sayman/node_modules ./modules/sayman/node_modules
 COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
 COPY package.json pnpm-workspace.yaml tsconfig.base.json .npmrc ./
 COPY packages ./packages

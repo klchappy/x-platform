@@ -69,14 +69,14 @@ export const PLANS: PlanDef[] = [
     priceMonthlyTry: 149_900,
     trialDays: 14,
     features: [
-      'Tüm 4 modül',
+      'Tüm 5 modül',
       'En fazla 50 kullanıcı',
       'AI: 5M token/ay',
       'Sesli sekreter + toplantı özetleri',
       'Webhook + REST API',
       'Öncelikli destek',
     ],
-    modules: ['damga', 'lokma', 'santral', 'ticaret'],
+    modules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
     quotas: {
       maxUsers: 50,
       maxOrgsPerOwner: 3,
@@ -101,7 +101,7 @@ export const PLANS: PlanDef[] = [
       'Özel SLA + dedike destek',
       'Self-hosted seçeneği',
     ],
-    modules: ['damga', 'lokma', 'santral', 'ticaret'],
+    modules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
     quotas: {
       maxUsers: 1_000_000,
       maxOrgsPerOwner: 50,

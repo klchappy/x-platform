@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const MODULE_IDS = ['damga', 'lokma', 'santral', 'ticaret'] as const;
+export const MODULE_IDS = ['damga', 'lokma', 'santral', 'ticaret', 'sayman'] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
 
 export const ModuleIdSchema = z.enum(MODULE_IDS);
@@ -65,6 +65,18 @@ export const MODULES: Record<ModuleId, ModuleMeta> = {
     color: '#7c3aed',
     apiBase: '/v1/modules/ticaret',
     webBase: '/m/ticaret',
+  },
+  sayman: {
+    id: 'sayman',
+    name: 'Sayman',
+    tagline: 'Muhasebe & ödeme takibi',
+    description:
+      'Borç/alacak takibi, fatura kaydı, ödeme tahsilatı, periyodik abonelikler, nakit akışı. Küçük işletme muhasebesi.',
+    sector: 'Muhasebe & Finans',
+    icon: '🧮',
+    color: '#0ea5e9',
+    apiBase: '/v1/modules/sayman',
+    webBase: '/m/sayman',
   },
 };
 

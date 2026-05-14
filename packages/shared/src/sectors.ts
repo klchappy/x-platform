@@ -27,9 +27,15 @@ export const SECTOR_BUNDLES: SectorBundle[] = [
     recommendedModules: ['santral', 'damga'],
   },
   {
+    id: 'muhasebe_butik',
+    name: 'Muhasebe / SMMM Bürosu',
+    description: 'Müşteri firma takibi, ödeme tahsilatı, periyodik aboneliklerin yönetimi.',
+    recommendedModules: ['sayman', 'santral'],
+  },
+  {
     id: 'tam_pakcage',
     name: 'Tam Paket (Çoklu Sektör)',
     description: 'Tüm modüller — büyük holding/multi-sektör için.',
-    recommendedModules: ['damga', 'lokma', 'santral', 'ticaret'],
+    recommendedModules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
   },
 ];

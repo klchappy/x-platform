@@ -8,10 +8,11 @@ import damga from '@x/mod-damga';
 import lokma from '@x/mod-lokma';
 import santral from '@x/mod-santral';
 import ticaret from '@x/mod-ticaret';
+import sayman from '@x/mod-sayman';
 import { logger } from './lib/logger.js';
 import { verifyJwt } from './lib/jwt.js';
 
-const modules = { damga, lokma, santral, ticaret } as const;
+const modules = { damga, lokma, santral, ticaret, sayman } as const;
 
 /**
  * Optional auth: if a valid bearer/cookie/demo token is present, set

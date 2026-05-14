@@ -17,6 +17,7 @@ COPY modules/damga/package.json ./modules/damga/
 COPY modules/lokma/package.json ./modules/lokma/
 COPY modules/santral/package.json ./modules/santral/
 COPY modules/ticaret/package.json ./modules/ticaret/
+COPY modules/sayman/package.json ./modules/sayman/
 COPY apps/web/package.json ./apps/web/
 RUN pnpm install --filter @x/web... --filter "@x/mod-*"
 

@@ -13,6 +13,7 @@ import DamgaModulePage from '@x/mod-damga/web';
 import LokmaModulePage from '@x/mod-lokma/web';
 import SantralModulePage from '@x/mod-santral/web';
 import TicaretModulePage from '@x/mod-ticaret/web';
+import SaymanModulePage from '@x/mod-sayman/web';
 
 export function App(): React.ReactElement {
   return (
@@ -31,6 +32,7 @@ export function App(): React.ReactElement {
         <Route path="m/lokma" element={<LokmaModulePage />} />
         <Route path="m/santral" element={<SantralModulePage />} />
         <Route path="m/ticaret" element={<TicaretModulePage />} />
+        <Route path="m/sayman" element={<SaymanModulePage />} />
       </Route>
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>

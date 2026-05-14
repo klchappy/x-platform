@@ -11,3 +11,4 @@ export * from './modules-damga';
 export * from './modules-lokma';
 export * from './modules-santral';
 export * from './modules-ticaret';
+export * from './modules-sayman';
