@@ -22,7 +22,7 @@ COPY apps/web/package.json ./apps/web/
 RUN pnpm install --filter @x/web... --filter "@x/mod-*"
 
 FROM deps AS build
-ARG VITE_API_URL=https://api.x.deploi.net
+ARG VITE_API_URL=
 ARG VITE_SUPABASE_URL
 ARG VITE_SUPABASE_ANON_KEY
 ENV VITE_API_URL=$VITE_API_URL \
