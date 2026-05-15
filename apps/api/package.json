@@ -20,6 +20,7 @@
     "@x/mod-sayman": "workspace:*",
     "@x/mod-etik": "workspace:*",
     "@x/mod-envanter": "workspace:*",
+    "@x/mod-lokma": "workspace:*",
     "@supabase/supabase-js": "^2.47.10",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.7",

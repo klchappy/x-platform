@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const MODULE_IDS = ['damga', 'santral', 'sayman', 'etik', 'envanter'] as const;
+export const MODULE_IDS = ['damga', 'santral', 'sayman', 'etik', 'envanter', 'lokma'] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
 
 export const ModuleIdSchema = z.enum(MODULE_IDS);
@@ -77,6 +77,18 @@ export const MODULES: Record<ModuleId, ModuleMeta> = {
     color: '#2563eb',
     apiBase: '/v1/modules/santral',
     webBase: '/m/santral',
+  },
+  lokma: {
+    id: 'lokma',
+    name: 'Lokma',
+    tagline: 'Mutfak yönetimi',
+    description:
+      'Tarif, malzeme, stok lotları, SKT takibi, menü planlama. Restoran/otel/catering mutfakları için.',
+    sector: 'Gıda & HoReCa',
+    icon: '🍲',
+    color: '#fbbf24',
+    apiBase: '/v1/modules/lokma',
+    webBase: '/m/lokma',
   },
 };
 

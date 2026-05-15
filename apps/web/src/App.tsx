@@ -17,6 +17,7 @@ import SantralModulePage from '@x/mod-santral/web';
 import SaymanModulePage from '@x/mod-sayman/web';
 import EtikModulePage from '@x/mod-etik/web';
 import EnvanterModulePage from '@x/mod-envanter/web';
+import LokmaModulePage from '@x/mod-lokma/web';
 
 export function App(): React.ReactElement {
   return (
@@ -40,6 +41,7 @@ export function App(): React.ReactElement {
           <Route path="m/envanter" element={<EnvanterModulePage />} />
           <Route path="m/sayman" element={<SaymanModulePage />} />
           <Route path="m/santral" element={<SantralModulePage />} />
+          <Route path="m/lokma" element={<LokmaModulePage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
