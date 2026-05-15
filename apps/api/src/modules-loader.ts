@@ -3,16 +3,22 @@ import { Router as makeRouter } from 'express';
 import { eq } from 'drizzle-orm';
 import { getDb } from '@x/db/client';
 import { users } from '@x/db/schema';
-import { MODULE_IDS } from '@x/shared';
+import { MODULE_IDS, type ModuleId } from '@x/shared';
 import damga from '@x/mod-damga';
-import lokma from '@x/mod-lokma';
 import santral from '@x/mod-santral';
-import ticaret from '@x/mod-ticaret';
 import sayman from '@x/mod-sayman';
+import etik from '@x/mod-etik';
+import envanter from '@x/mod-envanter';
 import { logger } from './lib/logger.js';
 import { verifyJwt } from './lib/jwt.js';
 
-const modules = { damga, lokma, santral, ticaret, sayman } as const;
+const modules: Record<ModuleId, typeof damga> = {
+  damga,
+  santral,
+  sayman,
+  etik,
+  envanter,
+};
 
 /**
  * Optional auth: if a valid bearer/cookie/demo token is present, set

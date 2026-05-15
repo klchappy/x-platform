@@ -19,10 +19,10 @@ COPY packages/verification/package.json ./packages/verification/
 COPY packages/ai/package.json ./packages/ai/
 COPY packages/module-api/package.json ./packages/module-api/
 COPY modules/damga/package.json ./modules/damga/
-COPY modules/lokma/package.json ./modules/lokma/
 COPY modules/santral/package.json ./modules/santral/
-COPY modules/ticaret/package.json ./modules/ticaret/
 COPY modules/sayman/package.json ./modules/sayman/
+COPY modules/etik/package.json ./modules/etik/
+COPY modules/envanter/package.json ./modules/envanter/
 COPY apps/api/package.json ./apps/api/
 RUN pnpm install --filter @x/api... --filter "@x/mod-*"
 
@@ -36,10 +36,10 @@ COPY --from=deps /app/packages/verification/node_modules ./packages/verification
 COPY --from=deps /app/packages/ai/node_modules ./packages/ai/node_modules
 COPY --from=deps /app/packages/module-api/node_modules ./packages/module-api/node_modules
 COPY --from=deps /app/modules/damga/node_modules ./modules/damga/node_modules
-COPY --from=deps /app/modules/lokma/node_modules ./modules/lokma/node_modules
 COPY --from=deps /app/modules/santral/node_modules ./modules/santral/node_modules
-COPY --from=deps /app/modules/ticaret/node_modules ./modules/ticaret/node_modules
 COPY --from=deps /app/modules/sayman/node_modules ./modules/sayman/node_modules
+COPY --from=deps /app/modules/etik/node_modules ./modules/etik/node_modules
+COPY --from=deps /app/modules/envanter/node_modules ./modules/envanter/node_modules
 COPY --from=deps /app/apps/api/node_modules ./apps/api/node_modules
 COPY package.json pnpm-workspace.yaml tsconfig.base.json .npmrc ./
 COPY packages ./packages

@@ -9,22 +9,16 @@ export interface SectorBundle {
 
 export const SECTOR_BUNDLES: SectorBundle[] = [
   {
-    id: 'restoran',
-    name: 'Restoran / Catering',
-    description: 'Mutfak operasyonu + personel takibi + müşteri çağrıları.',
-    recommendedModules: ['lokma', 'damga', 'santral'],
+    id: 'uyum_etik',
+    name: 'Uyum / Etik Kurul',
+    description: 'Etik bildirim, soruşturma, personel takibi — kurumsal uyum.',
+    recommendedModules: ['etik', 'damga'],
   },
   {
-    id: 'tekstil_uretim',
-    name: 'Tekstil / Üretim',
-    description: 'Üretim/ihracat ERP + personel + ofis sekretaryası.',
-    recommendedModules: ['ticaret', 'damga', 'santral'],
-  },
-  {
-    id: 'ofis_hizmet',
-    name: 'Ofis / Hizmet',
-    description: 'Sekretarya + personel takibi + (opsiyonel) satış.',
-    recommendedModules: ['santral', 'damga'],
+    id: 'perakende_depo',
+    name: 'Perakende / Depo',
+    description: 'Envanter + personel + müşteri çağrıları — küçük işletme operasyonu.',
+    recommendedModules: ['envanter', 'damga', 'santral'],
   },
   {
     id: 'muhasebe_butik',
@@ -33,9 +27,15 @@ export const SECTOR_BUNDLES: SectorBundle[] = [
     recommendedModules: ['sayman', 'santral'],
   },
   {
-    id: 'tam_pakcage',
+    id: 'ofis_hizmet',
+    name: 'Ofis / Hizmet',
+    description: 'Sekretarya + personel takibi + (opsiyonel) etik kurul.',
+    recommendedModules: ['santral', 'damga', 'etik'],
+  },
+  {
+    id: 'tam_paket',
     name: 'Tam Paket (Çoklu Sektör)',
-    description: 'Tüm modüller — büyük holding/multi-sektör için.',
-    recommendedModules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
+    description: 'Tüm 5 modül — büyük holding/multi-sektör için.',
+    recommendedModules: ['etik', 'damga', 'envanter', 'sayman', 'santral'],
   },
 ];

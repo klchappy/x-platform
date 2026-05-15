@@ -14,10 +14,10 @@ COPY packages/verification/package.json ./packages/verification/
 COPY packages/ai/package.json ./packages/ai/
 COPY packages/module-api/package.json ./packages/module-api/
 COPY modules/damga/package.json ./modules/damga/
-COPY modules/lokma/package.json ./modules/lokma/
 COPY modules/santral/package.json ./modules/santral/
-COPY modules/ticaret/package.json ./modules/ticaret/
 COPY modules/sayman/package.json ./modules/sayman/
+COPY modules/etik/package.json ./modules/etik/
+COPY modules/envanter/package.json ./modules/envanter/
 COPY apps/web/package.json ./apps/web/
 RUN pnpm install --filter @x/web... --filter "@x/mod-*"
 

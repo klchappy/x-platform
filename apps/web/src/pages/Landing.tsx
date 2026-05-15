@@ -33,7 +33,7 @@ export function LandingPage(): React.ReactElement {
       </section>
 
       <section id="modules" style={{ marginBottom: 80 }}>
-        <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 24, textAlign: 'center' }}>4 Modül</h2>
+        <h2 style={{ fontSize: 28, fontWeight: 800, marginBottom: 24, textAlign: 'center' }}>5 Modül</h2>
         <div className="x-cards">
           {MODULE_IDS.map((id) => {
             const m = MODULES[id];
@@ -126,8 +126,16 @@ export function LandingPage(): React.ReactElement {
         </div>
       </section>
 
-      <footer style={{ textAlign: 'center', color: 'var(--x-muted)', fontSize: 13, paddingTop: 40, borderTop: '1px solid var(--x-line)' }}>
-        X Platform · deploi.net altyapısı · Hetzner + Coolify + Cloudflare
+      <footer style={{ paddingTop: 40, borderTop: '1px solid var(--x-line)' }}>
+        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 16, fontSize: 13 }}>
+          <Link to="/legal/kvkk" style={{ color: 'var(--x-muted)' }}>KVKK Aydınlatma</Link>
+          <Link to="/legal/terms" style={{ color: 'var(--x-muted)' }}>Kullanım Şartları</Link>
+          <Link to="/legal/privacy" style={{ color: 'var(--x-muted)' }}>Gizlilik</Link>
+          <Link to="/legal/cookies" style={{ color: 'var(--x-muted)' }}>Çerez Politikası</Link>
+        </div>
+        <div style={{ textAlign: 'center', color: 'var(--x-muted)', fontSize: 13 }}>
+          X Platform · deploi.net altyapısı · Hetzner + Coolify + Cloudflare
+        </div>
       </footer>
     </div>
   );

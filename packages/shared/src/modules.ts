@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-export const MODULE_IDS = ['damga', 'lokma', 'santral', 'ticaret', 'sayman'] as const;
+export const MODULE_IDS = ['damga', 'santral', 'sayman', 'etik', 'envanter'] as const;
 export type ModuleId = (typeof MODULE_IDS)[number];
 
 export const ModuleIdSchema = z.enum(MODULE_IDS);
@@ -18,6 +18,18 @@ export interface ModuleMeta {
 }
 
 export const MODULES: Record<ModuleId, ModuleMeta> = {
+  etik: {
+    id: 'etik',
+    name: 'Etik',
+    tagline: 'Etik bildirim & soruşturma',
+    description:
+      'Anonim/açık şikayet, etik kurul soruşturmaları, vaka takibi, KVKK uyumlu kanıt yönetimi.',
+    sector: 'Uyum & Etik',
+    icon: '⚖️',
+    color: '#dc2626',
+    apiBase: '/v1/modules/etik',
+    webBase: '/m/etik',
+  },
   damga: {
     id: 'damga',
     name: 'Damga',
@@ -30,41 +42,17 @@ export const MODULES: Record<ModuleId, ModuleMeta> = {
     apiBase: '/v1/modules/damga',
     webBase: '/m/damga',
   },
-  lokma: {
-    id: 'lokma',
-    name: 'Lokma',
-    tagline: 'Mutfak işletim sistemi',
+  envanter: {
+    id: 'envanter',
+    name: 'Envanter',
+    tagline: 'Ürün & stok takibi',
     description:
-      'Reçete, stok, tedarikçi, satın alma, menü planı ve AI destekli mutfak operasyonu.',
-    sector: 'Restoran & Catering',
-    icon: '🍳',
-    color: '#16a34a',
-    apiBase: '/v1/modules/lokma',
-    webBase: '/m/lokma',
-  },
-  santral: {
-    id: 'santral',
-    name: 'Santral',
-    tagline: 'Sesli asistan & CRM',
-    description:
-      'Çağrı kaydı, sesli sekreter, randevu, görev otomasyonu, toplantı transkripsiyonu ve CRM.',
-    sector: 'Ofis & Hizmet',
-    icon: '☎️',
-    color: '#2563eb',
-    apiBase: '/v1/modules/santral',
-    webBase: '/m/santral',
-  },
-  ticaret: {
-    id: 'ticaret',
-    name: 'Ticaret',
-    tagline: 'Üretim & ihracat ERP',
-    description:
-      'Satış, sevk, e-Fatura, KEP, etiket basımı, onay akışları, kasa ve risk skoru. Tekstil/üretim odaklı.',
-    sector: 'Üretim & Ticaret',
+      'Ürün kataloğu, stok hareketleri (giriş/çıkış/sayım), depo bazlı miktar, düşük stok uyarısı.',
+    sector: 'Operasyon & Lojistik',
     icon: '📦',
     color: '#7c3aed',
-    apiBase: '/v1/modules/ticaret',
-    webBase: '/m/ticaret',
+    apiBase: '/v1/modules/envanter',
+    webBase: '/m/envanter',
   },
   sayman: {
     id: 'sayman',
@@ -77,6 +65,18 @@ export const MODULES: Record<ModuleId, ModuleMeta> = {
     color: '#0ea5e9',
     apiBase: '/v1/modules/sayman',
     webBase: '/m/sayman',
+  },
+  santral: {
+    id: 'santral',
+    name: 'Santral',
+    tagline: 'Sesli asistan & CRM',
+    description:
+      'Çağrı kaydı, sesli sekreter, randevu, görev otomasyonu, toplantı transkripsiyonu ve CRM.',
+    sector: 'Ofis & Hizmet',
+    icon: '☎️',
+    color: '#2563eb',
+    apiBase: '/v1/modules/santral',
+    webBase: '/m/santral',
   },
 };
 

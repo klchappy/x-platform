@@ -29,18 +29,18 @@ importers:
       '@x/mod-damga':
         specifier: workspace:*
         version: link:../../modules/damga
-      '@x/mod-lokma':
+      '@x/mod-envanter':
         specifier: workspace:*
-        version: link:../../modules/lokma
+        version: link:../../modules/envanter
+      '@x/mod-etik':
+        specifier: workspace:*
+        version: link:../../modules/etik
       '@x/mod-santral':
         specifier: workspace:*
         version: link:../../modules/santral
       '@x/mod-sayman':
         specifier: workspace:*
         version: link:../../modules/sayman
-      '@x/mod-ticaret':
-        specifier: workspace:*
-        version: link:../../modules/ticaret
       '@x/module-api':
         specifier: workspace:*
         version: link:../../packages/module-api
@@ -126,18 +126,18 @@ importers:
       '@x/mod-damga':
         specifier: workspace:*
         version: link:../../modules/damga
-      '@x/mod-lokma':
+      '@x/mod-envanter':
         specifier: workspace:*
-        version: link:../../modules/lokma
+        version: link:../../modules/envanter
+      '@x/mod-etik':
+        specifier: workspace:*
+        version: link:../../modules/etik
       '@x/mod-santral':
         specifier: workspace:*
         version: link:../../modules/santral
       '@x/mod-sayman':
         specifier: workspace:*
         version: link:../../modules/sayman
-      '@x/mod-ticaret':
-        specifier: workspace:*
-        version: link:../../modules/ticaret
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
@@ -216,11 +216,42 @@ importers:
         specifier: ^5.7.2
         version: 5.9.3
 
-  modules/lokma:
+  modules/envanter:
     dependencies:
-      '@x/ai':
+      '@x/db':
         specifier: workspace:*
-        version: link:../../packages/ai
+        version: link:../../packages/db
+      '@x/module-api':
+        specifier: workspace:*
+        version: link:../../packages/module-api
+      '@x/shared':
+        specifier: workspace:*
+        version: link:../../packages/shared
+      drizzle-orm:
+        specifier: ^0.45.2
+        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
+      express:
+        specifier: ^4.21.2
+        version: 4.22.2
+      zod:
+        specifier: ^3.24.1
+        version: 3.25.76
+    devDependencies:
+      '@types/express':
+        specifier: ^5.0.0
+        version: 5.0.6
+      '@types/react':
+        specifier: ^18.3.18
+        version: 18.3.28
+      react:
+        specifier: ^18.3.1
+        version: 18.3.1
+      typescript:
+        specifier: ^5.7.2
+        version: 5.9.3
+
+  modules/etik:
+    dependencies:
       '@x/db':
         specifier: workspace:*
         version: link:../../packages/db
@@ -291,40 +322,6 @@ importers:
         version: 5.9.3
 
   modules/sayman:
-    dependencies:
-      '@x/db':
-        specifier: workspace:*
-        version: link:../../packages/db
-      '@x/module-api':
-        specifier: workspace:*
-        version: link:../../packages/module-api
-      '@x/shared':
-        specifier: workspace:*
-        version: link:../../packages/shared
-      drizzle-orm:
-        specifier: ^0.45.2
-        version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)
-      express:
-        specifier: ^4.21.2
-        version: 4.22.2
-      zod:
-        specifier: ^3.24.1
-        version: 3.25.76
-    devDependencies:
-      '@types/express':
-        specifier: ^5.0.0
-        version: 5.0.6
-      '@types/react':
-        specifier: ^18.3.18
-        version: 18.3.28
-      react:
-        specifier: ^18.3.1
-        version: 18.3.1
-      typescript:
-        specifier: ^5.7.2
-        version: 5.9.3
-
-  modules/ticaret:
     dependencies:
       '@x/db':
         specifier: workspace:*

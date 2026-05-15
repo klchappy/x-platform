@@ -53,7 +53,7 @@ export const PLANS: PlanDef[] = [
       'E-posta + WhatsApp bildirim',
       '14 gün ücretsiz deneme',
     ],
-    modules: ['damga', 'lokma'],
+    modules: ['damga', 'sayman'],
     quotas: {
       maxUsers: 15,
       maxOrgsPerOwner: 1,
@@ -76,7 +76,7 @@ export const PLANS: PlanDef[] = [
       'Webhook + REST API',
       'Öncelikli destek',
     ],
-    modules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
+    modules: ['etik', 'damga', 'envanter', 'sayman', 'santral'],
     quotas: {
       maxUsers: 50,
       maxOrgsPerOwner: 3,
@@ -101,7 +101,7 @@ export const PLANS: PlanDef[] = [
       'Özel SLA + dedike destek',
       'Self-hosted seçeneği',
     ],
-    modules: ['damga', 'lokma', 'santral', 'ticaret', 'sayman'],
+    modules: ['etik', 'damga', 'envanter', 'sayman', 'santral'],
     quotas: {
       maxUsers: 1_000_000,
       maxOrgsPerOwner: 50,

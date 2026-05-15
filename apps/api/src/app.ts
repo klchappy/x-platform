@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import pinoHttp from 'pino-http';
 import { logger } from './lib/logger.js';
 import { errorHandler } from './middleware/error.js';
+import { idempotency } from './middleware/idempotency.js';
 import authRoutes from './routes/auth.js';
 import healthRoutes from './routes/health.js';
 import meRoutes from './routes/me.js';
@@ -48,6 +49,9 @@ export async function createApp(): Promise<Express> {
   app.use(express.json({ limit: '2mb' }));
   app.use(cookieParser());
   app.use(pinoHttp({ logger, autoLogging: { ignore: (req) => req.url === '/health' } }));
+
+  // Idempotency middleware — applies to POST/PUT/PATCH/DELETE with Idempotency-Key header
+  app.use('/v1', idempotency);
 
   // v1 API surface
   app.use('/health', healthRoutes);

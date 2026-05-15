@@ -1,5 +1,5 @@
 {
-  "name": "@x/mod-lokma",
+  "name": "@x/mod-envanter",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -16,7 +16,6 @@
     "@x/db": "workspace:*",
     "@x/module-api": "workspace:*",
     "@x/shared": "workspace:*",
-    "@x/ai": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "express": "^4.21.2",
     "zod": "^3.24.1"

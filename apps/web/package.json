@@ -12,10 +12,10 @@
   "dependencies": {
     "@x/shared": "workspace:*",
     "@x/mod-damga": "workspace:*",
-    "@x/mod-lokma": "workspace:*",
     "@x/mod-santral": "workspace:*",
-    "@x/mod-ticaret": "workspace:*",
     "@x/mod-sayman": "workspace:*",
+    "@x/mod-etik": "workspace:*",
+    "@x/mod-envanter": "workspace:*",
     "@supabase/supabase-js": "^2.47.10",
     "@tanstack/react-query": "^5.62.11",
     "react": "^18.3.1",

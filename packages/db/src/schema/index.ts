@@ -7,8 +7,14 @@ export * from './notifications';
 export * from './api-keys';
 export * from './plans';
 export * from './invitations';
+export * from './departments';
+export * from './idempotency';
+export * from './webhooks';
+// Module-specific tables (existing modules retain DB tables even if not mounted)
 export * from './modules-damga';
 export * from './modules-lokma';
 export * from './modules-santral';
 export * from './modules-ticaret';
 export * from './modules-sayman';
+export * from './modules-etik';
+export * from './modules-envanter';
