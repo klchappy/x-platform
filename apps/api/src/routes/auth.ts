@@ -1,9 +1,10 @@
 import { Router } from 'express';
 import { z } from 'zod';
 import bcrypt from 'bcryptjs';
-import { eq } from 'drizzle-orm';
+import { createHash, randomBytes } from 'node:crypto';
+import { eq, and, isNull, gt } from 'drizzle-orm';
 import { getDb } from '@x/db/client';
-import { users, orgs, orgModules, subscriptions } from '@x/db/schema';
+import { users, orgs, orgModules, subscriptions, magicLinkTokens } from '@x/db/schema';
 import { httpError, MODULE_IDS, OrgRoleSchema, PLAN_BY_ID } from '@x/shared';
 import { signJwt } from '../lib/jwt.js';
 
@@ -146,6 +147,89 @@ router.post('/resolve-identifier', async (req, res, next) => {
 
 router.post('/sign-out', (_req, res) => {
   res.json({ ok: true });
+});
+
+/**
+ * Magic-link flow (damga UX uyumu):
+ * 1) POST /v1/auth/magic-link { email } → token üret, hash'le DB'ye yaz.
+ *    Mail sağlayıcısı (Resend) yapılandırılmamışken response devLink döner.
+ * 2) GET  /v1/auth/callback?token=raw  → token doğrula → JWT ver, kullanım işaretle.
+ */
+const MagicLinkSchema = z.object({ email: z.string().email() });
+
+function hashToken(raw: string): string {
+  return createHash('sha256').update(raw).digest('hex');
+}
+
+router.post('/magic-link', async (req, res, next) => {
+  try {
+    const { email } = MagicLinkSchema.parse(req.body);
+    const db = getDb();
+    const user = await db.query.users.findFirst({ where: (u, { eq: e }) => e(u.email, email.toLowerCase()) });
+    if (!user) {
+      // Aynı yanıt — kullanıcı sayımı sızdırmamak için
+      res.json({ ok: true, sent: true, message: 'Eğer bu e-posta sistemde kayıtlıysa link gönderildi.' });
+      return;
+    }
+    if (!user.isActive) throw httpError(403, 'Hesap pasif', 'inactive');
+
+    const raw = randomBytes(32).toString('base64url');
+    const tokenHash = hashToken(raw);
+    const expiresAt = new Date(Date.now() + 30 * 60 * 1000); // 30 dk
+    await db.insert(magicLinkTokens).values({
+      userId: user.id,
+      email: user.email,
+      tokenHash,
+      expiresAt,
+      requestIp: req.ip ?? null,
+    });
+
+    const appUrl = process.env.APP_URL ?? 'https://x.deploi.net';
+    const callbackUrl = `${appUrl}/auth/callback?token=${raw}`;
+
+    // Resend yapılandırılmadığı sürece geliştirici linki UI'a aktar.
+    const mailConfigured = !!process.env.RESEND_API_KEY;
+    res.json({
+      ok: true,
+      sent: true,
+      message: mailConfigured
+        ? 'E-posta gönderildi (30 dk geçerli).'
+        : 'Mail sağlayıcısı yapılandırılmadığı için link doğrudan döndürüldü (geliştirici modu).',
+      devLink: mailConfigured ? undefined : callbackUrl,
+      expiresAt,
+    });
+  } catch (e) {
+    next(e);
+  }
+});
+
+router.get('/callback', async (req, res, next) => {
+  try {
+    const raw = typeof req.query.token === 'string' ? req.query.token : '';
+    if (!raw) throw httpError(400, 'token gerekli', 'missing_token');
+    const tokenHash = hashToken(raw);
+    const db = getDb();
+    const record = await db.query.magicLinkTokens.findFirst({
+      where: (m, { and: a, eq: e, isNull: n, gt: g }) =>
+        a(e(m.tokenHash, tokenHash), n(m.usedAt), g(m.expiresAt, new Date())),
+    });
+    if (!record) throw httpError(400, 'Geçersiz veya süresi dolmuş bağlantı', 'invalid_or_expired');
+
+    const user = await db.query.users.findFirst({ where: (u, { eq: e }) => e(u.id, record.userId) });
+    if (!user) throw httpError(404, 'Kullanıcı bulunamadı', 'user_not_found');
+    if (!user.isActive) throw httpError(403, 'Hesap pasif', 'inactive');
+
+    await db.update(magicLinkTokens).set({ usedAt: new Date() }).where(eq(magicLinkTokens.id, record.id));
+    await db.update(users).set({ lastLoginAt: new Date() }).where(eq(users.id, user.id));
+
+    const token = signJwt({ sub: user.id, email: user.email, org: user.orgId, role: user.role });
+    res.json({
+      token,
+      user: { id: user.id, email: user.email, fullName: user.fullName, role: user.role, orgId: user.orgId },
+    });
+  } catch (e) {
+    next(e);
+  }
 });
 
 export default router;

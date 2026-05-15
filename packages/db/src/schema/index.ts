@@ -10,6 +10,7 @@ export * from './invitations';
 export * from './departments';
 export * from './idempotency';
 export * from './webhooks';
+export * from './magic-links';
 // Module-specific tables (existing modules retain DB tables even if not mounted)
 export * from './modules-damga';
 export * from './modules-lokma';

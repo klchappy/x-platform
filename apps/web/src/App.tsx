@@ -7,6 +7,7 @@ import { ModulesPage } from './pages/Modules.js';
 import { SettingsPage } from './pages/Settings.js';
 import { SignInPage } from './pages/SignIn.js';
 import { SignUpPage } from './pages/SignUp.js';
+import { AuthCallbackPage } from './pages/AuthCallback.js';
 import { BillingPage } from './pages/Billing.js';
 import { TeamPage } from './pages/Team.js';
 import { LegalPage } from './pages/Legal.js';
@@ -24,6 +25,7 @@ export function App(): React.ReactElement {
         <Route path="/" element={<LandingPage />} />
         <Route path="/sign-in" element={<SignInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/auth/callback" element={<AuthCallbackPage />} />
         <Route path="/legal/:doc" element={<LegalPage />} />
         <Route path="/legal" element={<Navigate to="/legal/kvkk" replace />} />
         <Route path="/app" element={<Shell />}>
