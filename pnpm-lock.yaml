@@ -193,6 +193,9 @@ importers:
       '@x/shared':
         specifier: workspace:*
         version: link:../../packages/shared
+      '@x/verification':
+        specifier: workspace:*
+        version: link:../../packages/verification
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@types/pg@8.20.0)(gel@2.2.0)(pg@8.20.0)

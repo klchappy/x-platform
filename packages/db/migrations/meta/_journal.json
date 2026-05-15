@@ -43,6 +43,13 @@
       "when": 1778852874924,
       "tag": "0005_first_sinister_six",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1778855383180,
+      "tag": "0006_demonic_silk_fever",
+      "breakpoints": true
     }
   ]
 }

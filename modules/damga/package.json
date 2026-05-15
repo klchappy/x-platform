@@ -16,6 +16,7 @@
     "@x/db": "workspace:*",
     "@x/module-api": "workspace:*",
     "@x/shared": "workspace:*",
+    "@x/verification": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "express": "^4.21.2",
     "zod": "^3.24.1"
