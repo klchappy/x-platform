@@ -9,7 +9,6 @@ import santral from '@x/mod-santral';
 import sayman from '@x/mod-sayman';
 import etik from '@x/mod-etik';
 import envanter from '@x/mod-envanter';
-import lokma from '@x/mod-lokma';
 import { logger } from './lib/logger.js';
 import { verifyJwt } from './lib/jwt.js';
 
@@ -19,7 +18,6 @@ const modules: Record<ModuleId, typeof damga> = {
   sayman,
   etik,
   envanter,
-  lokma,
 };
 
 /**

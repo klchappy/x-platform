@@ -20,25 +20,10 @@ export * from './damga/leaves';
 export * from './damga/shifts';
 export * from './damga/gamification';
 
-// Sayman full port (pgSchema('sayman') namespace)
-export * from './sayman/enums';
-export * from './sayman/parties';
-export * from './sayman/finance';
-
-// Santral full port (pgSchema('santral') namespace)
-export * from './santral/enums';
-export * from './santral/contacts';
-export * from './santral/calls';
-export * from './santral/tasks';
-
-// Lokma full port (pgSchema('lokma') namespace)
-export * from './lokma/enums';
-export * from './lokma/kitchens';
-export * from './lokma/recipes';
-export * from './lokma/stock';
-export * from './lokma/menu';
-
-// Stub modules (will be replaced by full ports — kept for now to avoid breaking active code paths)
+// Stub modules (gradually being replaced by full ports above)
+export * from './modules-lokma';
+export * from './modules-santral';
 export * from './modules-ticaret';
+export * from './modules-sayman';
 export * from './modules-etik';
 export * from './modules-envanter';

@@ -50,13 +50,6 @@
       "when": 1778855383180,
       "tag": "0006_demonic_silk_fever",
       "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1778858456137,
-      "tag": "0007_lokma_santral_sayman_full_port",
-      "breakpoints": true
     }
   ]
 }
