@@ -38,6 +38,7 @@ export * from './lokma/recipes';
 export * from './lokma/stock';
 export * from './lokma/menu';
 
-// Active stub schemas (etik + envanter — full ports pending, mevcut modüller bu tabloları kullanıyor)
+// Stub modules (will be replaced by full ports — kept for now to avoid breaking active code paths)
+export * from './modules-ticaret';
 export * from './modules-etik';
 export * from './modules-envanter';
